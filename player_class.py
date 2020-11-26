@@ -32,9 +32,9 @@ class Character:
         """function moves the character in gravitational field g"""
         self.prevx = self.x
         self.prevy = self.y
+        self.vy += g
         self.x += self.vx
         self.y += self.vy
-        self.vy += g
 
     def collision(self, obj, change):
         """function checks for collision with the object obj - bull
@@ -47,6 +47,7 @@ class Character:
                                    self.yscale) and change:
                 if self.vy > 0:
                     self.vy = 0
+                    self.vx = 0
                     self.y = obj.y - self.yscale
                     self.doublejump = 1
                 else:
@@ -70,3 +71,16 @@ class Character:
         elif self.doublejump == 1:
             self.vy -= 10
             self.doublejump = 0
+
+    def speedup(self, surfs, coef):
+        """function makes a character speed up on the surfaces in
+        surf or in the air - coef defines the direction"""
+        k = 0
+        checkself = self
+        checkself.x -= 0.01
+        for surf in surfs:
+            k += int(checkself.collision(surf, False))
+        if k > 0:
+            self.vx = coef * 5
+        else:
+            self.vx += coef * 0.5
