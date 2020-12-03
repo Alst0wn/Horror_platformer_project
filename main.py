@@ -1,4 +1,6 @@
 import pygame
+from player_class import *
+from visual_module import *
 
 pygame.init()
 
@@ -7,7 +9,7 @@ screen = pygame.display.set_mode((800, 600))
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
-player, level = levelread('testlevel')
+player, level = level_read('level_1.txt')
 dpress, apress = False, False
 
 while not finished:  # gameplay
@@ -20,20 +22,26 @@ while not finished:  # gameplay
                 apress = True
             if event.key == pygame.K_d and not apress:
                 dpress = True
-            if event.key == pygame.K_space:
-                player.jump(level)
+            if event.key == pygame.K_w:
+                player.jump()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                 apress = False
             if event.key == pygame.K_d:
                 dpress = False
 
+    player.groundcheck(level)
     if dpress:
-        player.speedup(level, +1)
+        player.speedup(+1)
     if apress:
-        player.speedup(level, -1)
+        player.speedup(-1)
     player.move()
     for obj in level:
-        collision(obj, True)
+        player.collision(obj, True)
+    player.deathcheck()
+    if player.dead:
+        finished = True
     pygame.display.update()
-    framedraw(player, level)
+    frame_draw(level, player, 600, 800, screen, 1600)
+
+pygame.quit()
