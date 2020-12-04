@@ -6,9 +6,8 @@ GREEN = (0, 255, 0)
 
 
 def frame_draw(plat, char, hight, width, screen, scale):
-    screen.fill(WHITE)
     for i in plat:
-        pygame.draw.rect(screen, GREEN,
+        pygame.draw.rect(screen, WHITE,
                          (int(hight / scale * (
                                      i.x - char.x) + width / 2),
                           int(hight / scale * (
