@@ -2,13 +2,18 @@ import pygame
 from player_class import *
 from visual_module import *
 
+class Image():
+    def __init__(self):
+        self.x = 800
+        self.y = 600
+        self.forest_surf = pygame.image.load('forest.jpg')
+        self.forest_rect = self.forest_surf.get_rect(
+            bottomright=(self.x, self.y))
 
 
 
 def gameplay(screen, clock, levelname):
-    forest_surf = pygame.image.load('forest.jpg')
-    forest_rect = forest_surf.get_rect(
-        bottomright=(800, 600))
+    image = Image()
     FPS = 30
     finished = False
     player, level = level_read(levelname)
@@ -37,12 +42,12 @@ def gameplay(screen, clock, levelname):
             player.speedup(+1)
         if apress:
             player.speedup(-1)
-        player.move()
+        player.move(image)
         for obj in level:
             player.collision(obj, True)
         player.deathcheck()
         if player.dead:
             finished = True
         pygame.display.update()
-        screen.blit(forest_surf, forest_rect)
+        screen.blit(image.forest_surf, image.forest_rect)
         frame_draw(level, player, 600, 800, screen, 1600)
