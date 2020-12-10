@@ -3,11 +3,29 @@ from player_class import *
 from visual_module import *
 
 
+def check_display(list_obj, char):
+    o_high = list_obj[2]
+    o_low = list_obj[1]
+    o_left = list_obj[4]
+    o_right = list_obj[3]
+    if char.y - 600 > o_high.y:
+        for i in list_obj:
+            i.y += 600
+    if char.y + 1200 < o_low.y:
+        for i in list_obj:
+            i.y -= 600
+    if char.x - 800 > o_left.x:
+        for i in list_obj:
+            i.x += 800
+    if char.x + 1600 < o_right.x:
+        for i in list_obj:
+            i.x -= 800
+
 class Image():
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.forest_surf = pygame.image.load('forest.jpg')
+        self.forest_surf = pygame.image.load('lol.jpg')
         self.forest_rect = self.forest_surf.get_rect(
             bottomright=(self.x, self.y))
 
@@ -54,6 +72,7 @@ def gameplay(screen, clock, levelname):
         if apress:
             player.speedup(-1)
         player.move(image_list)
+        #check_display(image_list, player) I don't know where it has to be
         for obj in level:
             player.collision(obj, True)
         player.deathcheck()
