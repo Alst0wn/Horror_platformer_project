@@ -30,14 +30,15 @@ class Character:
         self.grounded = False
         self.dead = False
 
-    def move(self, obj, g=1):
+    def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""
         self.prevx = self.x
         self.prevy = self.y
-        obj.x -= self.vx/2
-        obj.y -= self.vy/2
-        obj.forest_rect = obj.forest_surf.get_rect(
-            bottomright=(obj.x, obj.y))
+        for obj in list_obj:
+            obj.x -= self.vx / 2
+            obj.y -= self.vy / 2
+            obj.forest_rect = obj.forest_surf.get_rect(
+                bottomright=(obj.x, obj.y))
         self.x += self.vx
         self.y += self.vy
         if self.grounded:
