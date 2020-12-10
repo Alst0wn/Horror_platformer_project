@@ -66,7 +66,10 @@ def quit_check(event, screen):
         menu(screen)
 
 
-def menu_choice(screen, level_key):
+def menu_choice(screen):
+    file_key = open('level_key.txt', 'r')
+    level_key = int(file_key.read())
+    file_key.close()
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             sys.exit()
@@ -150,10 +153,14 @@ def menu_choice(screen, level_key):
                 quit_check(i.pos, screen)
                 pygame.display.update()
     pygame.display.update()
+    file_key = open('level_key.txt', 'w')
+    file_key.write(str(level_key))
+    file_key.close()
 
 
 menu(screen)
 while not finished:
     clock.tick(FPS)
-    menu_choice(screen, 1)
+
+    menu_choice(screen)
 pygame.quit()
