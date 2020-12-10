@@ -41,8 +41,7 @@ class Character:
         else:
             self.vy += g
 
-
-    def groundcheck (self, surfs):
+    def groundcheck(self, surfs):
         k = 0
         checkself = self
         checkself.y += 1
@@ -60,9 +59,9 @@ class Character:
              a character """
         rectobj = pygame.Rect(obj.x, obj.y, obj.xscale, obj.yscale)
         if rectobj.colliderect((self.x, self.y, self.xscale,
-                               self.yscale)):
+                                self.yscale)):
             if rectobj.colliderect((self.prevx, self.y, self.xscale,
-                                   self.yscale)) and change:
+                                    self.yscale)) and change:
                 if self.vy >= 0:
                     self.vy = 0
                     self.vx = 0
@@ -99,12 +98,23 @@ class Character:
 
 
 class Platform:
-    def __init__(self, x, y, pl_width, pl_length):
+    def __init__(self, x, y, pl_width, pl_length, pl_type):
         self.x = float(x)
         self.y = float(y)
         self.xscale = float(pl_width)
         self.yscale = float(pl_length)
-        self.color = (0, 255, 0)
+        if int(pl_type) == 0:
+            self.color = (0, 255, 0)
+        if int(pl_type) == 1:
+            self.color = (255, 0, 0)
+        if int(pl_type) == 2:
+            self.color = (0, 0, 255)
+        if int(pl_type) == 3:
+            self.color = (100, 100, 100)
+        if int(pl_type) == 4:
+            self.color = (200, 100, 100)
+        if int(pl_type) == 5:
+            self.color = (100, 200, 100)
 
 
 def level_read(levelname):
@@ -117,7 +127,7 @@ def level_read(levelname):
     lines.pop(0)
     for line in lines:
         a = line.split()
-        x_cord, y_cord, p_width, p_length = a
-        plat.append(Platform(x_cord, y_cord, p_width, p_length))
+        x_cord, y_cord, p_width, p_length, p_type = a
+        plat.append(Platform(x_cord, y_cord, p_width, p_length, p_type))
     file.close()
     return player, plat
