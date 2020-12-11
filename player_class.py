@@ -30,6 +30,7 @@ class Character:
         self.grounded = False
         self.dead = False
         self.win = False
+        self.note = 0
 
     def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""
@@ -91,6 +92,11 @@ class Character:
                            == 2:
                     self.win = True
                     self.dead = True
+                if rectobj.colliderect((self.x, self.y,
+                                        self.xscale,
+                                        self.yscale)) and obj.type \
+                        == 4 and self.note > -1:
+                    self.note = 1
             return False
 
     def jump(self):

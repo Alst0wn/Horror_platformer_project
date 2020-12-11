@@ -78,6 +78,16 @@ def gameplay(screen, clock, levelname):
         player.deathcheck()
         if player.dead:
             finished = True
+        if player.note==1:
+            loop = False
+            note(screen, 800, 600)
+            pygame.display.update()
+            while not loop:
+                for event in pygame.event.get():
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        loop = True
+                clock.tick(FPS)
+            player.note = -1
         pygame.display.update()
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)
