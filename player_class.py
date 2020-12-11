@@ -29,6 +29,7 @@ class Character:
         self.doublejump = 1
         self.grounded = False
         self.dead = False
+        self.win = False
 
     def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""
@@ -63,23 +64,33 @@ class Character:
             checks if you need to change the properties of
              a character """
         rectobj = pygame.Rect(obj.x, obj.y, obj.xscale, obj.yscale)
-        if rectobj.colliderect((self.x, self.y, self.xscale,
-                                self.yscale)):
-            if rectobj.colliderect((self.prevx, self.y, self.xscale,
-                                    self.yscale)) and change:
-                if self.vy >= 0:
-                    self.vy = 0
-                    self.vx = 0
-                    self.y = obj.y - self.yscale
-                    self.doublejump = 1
-                else:
-                    self.vy = -self.vy
-                    self.y = obj.y + obj.yscale
-            elif change:
-                self.vx = -self.vx
-                self.x = self.prevx
-            return True
+        if obj.type == 0 or obj.type == 1 or obj.type == 5:
+            if rectobj.colliderect((self.x, self.y, self.xscale,
+                                 self.yscale)):
+                if rectobj.colliderect((self.prevx, self.y, self.xscale,
+                                     self.yscale)) and change:
+                    if self.vy >= 0:
+                        self.vy = 0
+                        self.vx = 0
+                        self.y = obj.y - self.yscale
+                        self.doublejump = 1
+                    else:
+                        self.vy = -self.vy
+                        self.y = obj.y + obj.yscale
+                elif change:
+                    self.vx = -self.vx
+                    self.x = self.prevx
+                return True
+            else:
+                return False
         else:
+            if change:
+                if rectobj.colliderect((self.x, self.y,
+                                           self.xscale,
+                                        self.yscale)) and obj.type \
+                           == 2:
+                    self.win = True
+                    self.dead = True
             return False
 
     def jump(self):
@@ -99,7 +110,8 @@ class Character:
             self.vx += coef * 0.4
 
     def deathcheck(self):
-        self.dead = (abs(self.x) > 100000 or abs(self.y) > 100000)
+        if (abs(self.x) > 100000 or abs(self.y) > 100000):
+            player.dead = True
 
 
 class Platform:
@@ -108,6 +120,7 @@ class Platform:
         self.y = float(y)
         self.xscale = float(pl_width)
         self.yscale = float(pl_length)
+        self.type = int(pl_type)
         if int(pl_type) == 0:
             self.color = (0, 255, 0)
         if int(pl_type) == 1:

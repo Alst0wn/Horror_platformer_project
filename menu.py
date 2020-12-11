@@ -80,65 +80,92 @@ def menu_choice(screen):
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 1:
-                        gameplay(screen, clock, 'level_1.txt')
+                        if gameplay(screen, clock, 'level_1.txt') \
+                                and level_key==1:
+                            level_key=2
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 175 and x < 320 and y > 150 and y < 194:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 2:
-                        gameplay(screen, clock, 'level_2.txt')
+                        if gameplay(screen, clock, 'level_2.txt') \
+                                and level_key==2:
+                            level_key=3
                     else:
                         locked(screen)
+                        clock.tick(FPS//60)
                 if x > 175 and x < 320 and y > 250 and y < 294:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 3:
-                        gameplay(screen, clock, 'level_3.txt')
+                        if gameplay(screen, clock, 'level_3.txt') \
+                                and level_key==3:
+                            level_key=4
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 175 and x < 320 and y > 350 and y < 394:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 4:
-                        gameplay(screen, clock, 'level_4.txt')
+                        if gameplay(screen, clock, 'level_4.txt') \
+                                and level_key==4:
+                            level_key=5
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 175 and x < 320 and y > 450 and y < 494:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 5:
-                        gameplay(screen, clock, 'level_5.txt')
+                        if gameplay(screen, clock, 'level_5.txt') \
+                                and level_key==5:
+                            level_key=6
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 475 and x < 620 and y > 50 and y < 94:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 6:
-                        gameplay(screen, clock, 'level_6.txt')
+                        if gameplay(screen, clock, 'level_6.txt') \
+                                and level_key==6:
+                            level_key=7
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 475 and x < 620 and y > 150 and y < 194:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 7:
-                        gameplay(screen, clock, 'level_7.txt')
+                        if gameplay(screen, clock, 'level_7.txt') \
+                                and level_key==7:
+                            level_key=8
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 475 and x < 620 and y > 250 and y < 294:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 8:
-                        gameplay(screen, clock, 'level_8.txt')
+                        if gameplay(screen, clock, 'level_8.txt') \
+                                and level_key==8:
+                            level_key=9
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 475 and x < 620 and y > 350 and y < 394:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
                     if level_key >= 9:
-                        gameplay(screen, clock, 'level_9.txt')
+                        if gameplay(screen, clock, 'level_9.txt') \
+                                and level_key==9:
+                            level_key=10
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 475 and x < 620 and y > 450 and y < 494:
                     # pygame.mixer.music.pause()
                     pygame.display.update()
@@ -146,6 +173,7 @@ def menu_choice(screen):
                         gameplay(screen, clock, 'level_10.txt')
                     else:
                         locked(screen)
+                        clock.tick(FPS/60)
                 if x > 300 and x < 475 and y > 525 and y < 569:
                     quit_draw()
                     # pygame.mixer.music.pause()
@@ -162,5 +190,6 @@ menu(screen)
 while not finished:
     clock.tick(FPS)
 
+    menu(screen)
     menu_choice(screen)
 pygame.quit()

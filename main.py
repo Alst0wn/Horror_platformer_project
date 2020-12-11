@@ -25,7 +25,7 @@ class Image():
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.forest_surf = pygame.image.load('lol.jpg')
+        self.forest_surf = pygame.image.load('forest.jpg')
         self.forest_rect = self.forest_surf.get_rect(
             bottomright=(self.x, self.y))
 
@@ -82,3 +82,4 @@ def gameplay(screen, clock, levelname):
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)
         frame_draw(level, player, 600, 800, screen, 1600)
+    return player.win
