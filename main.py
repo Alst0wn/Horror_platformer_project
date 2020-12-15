@@ -51,7 +51,11 @@ def menu(screen):
 
 def locked(screen):
     tlocked = font.render('Locked!', True, WHITE, BLACK)
-    screen.blit(tlocked, (330, 300))
+    a = 1000
+    while a > 0:
+        screen.blit(tlocked, (330, 300))
+        a -= 1
+        pygame.display.update()
 
 
 def menu_choice(screen):
