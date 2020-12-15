@@ -20,7 +20,7 @@ class Character:
         """the x component of the character's speed"""
         self.vy = 0
         """the y component of the character's speed"""
-        self.xscale = 50
+        self.xscale = 100
         """the x scale of the character in centimeters """
         self.yscale = 200
         """the y scale of the character in centimeters """
