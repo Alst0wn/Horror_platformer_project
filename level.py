@@ -64,7 +64,7 @@ def gameplay(screen, clock, levelname):
         for note in notes:
             if player.collision(note, False) and not note.disabled:
                 loop = False
-                note(screen, 800, 600)
+                notedraw(screen, 800, 600, note)
                 pygame.display.update()
                 while not loop:
                     for event in pygame.event.get():
@@ -76,4 +76,4 @@ def gameplay(screen, clock, levelname):
         pygame.display.update()
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)
-        frame_draw(level, player, 600, 800, screen, 1600)
+        frame_draw(level, player, notes, 600, 800, screen, 1600)

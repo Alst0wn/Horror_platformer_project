@@ -20,9 +20,9 @@ class Character:
         """the x component of the character's speed"""
         self.vy = 0
         """the y component of the character's speed"""
-        self.xscale = 100
+        self.xscale = 200
         """the x scale of the character in centimeters """
-        self.yscale = 200
+        self.yscale = 400
         """the y scale of the character in centimeters """
         self.texturename = 1
         """number of the current character texture"""
@@ -34,7 +34,7 @@ class Character:
         self.doublejump = 1
         """how many doublejuns does character have left"""
         self.grounded = False
-        """boolean if character is standibg on the ground"""
+        """boolean if character is standing on the ground"""
         self.dead = False
         """boolean if character is dead"""
         self.win = False
@@ -177,8 +177,9 @@ class Note():
         self.xscaleshow = 100
         self.yscaleshow = 200
         self.disabled = False
+        self.picture = picture
         self.image = pygame.image.load(
-            'notebackground'+picture+'.png')
+            'note.png')
         self.image = pygame.transform.scale(self.image,
                                             (self.xscaleshow,
                                              self.yscaleshow))
@@ -202,7 +203,7 @@ def level_read(levelname):
             plat.append(
                 Platform(x_cord, y_cord, p_width, parameter, p_type))
         else:
-            plat.append(
+            notes.append(
                 Note(x_cord, y_cord, p_width, parameter, p_type))
     file.close()
     return player, plat, notes
