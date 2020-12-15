@@ -139,7 +139,7 @@ class Platform:
             self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 2:
             self.color = (0, 0, 255)
-            self.image = pygame.image.load('platformtexture.jpg')
+            self.image = pygame.image.load('exit.png')
         if int(pl_type) == 3:
             self.color = (100, 100, 100)
             self.image = pygame.image.load('platformtexture.jpg')
