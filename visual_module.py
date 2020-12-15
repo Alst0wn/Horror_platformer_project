@@ -7,13 +7,11 @@ GREEN = (0, 255, 0)
 
 def frame_draw(plat, char, hight, width, screen, scale):
     for i in plat:
-        pygame.draw.rect(screen, i.color,
-                         (int(hight / scale * (
-                                 i.x - char.x) + width / 2),
-                          int(hight / scale * (
-                                  i.y - char.y) + 0.7 * hight),
-                          int(hight / scale * i.xscale),
-                          int(hight / scale * i.yscale)))
+        i.image = pygame.transform.scale(i.image,
+                                         (int(hight / scale * i.xscale), int(hight / scale * i.yscale)))
+        i.rect = (int(hight / scale * (i.x - char.x) + width / 2),
+                                          int(hight / scale * (i.y - char.y) + 0.7 * hight))
+        screen.blit(i.image, i.rect)
     if char.grounded and char.vx > 0:
         char.image = pygame.image.load('groundright.png')
         print(char.vx)

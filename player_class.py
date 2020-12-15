@@ -133,17 +133,24 @@ class Platform:
         self.type = int(pl_type)
         if int(pl_type) == 0:
             self.color = (0, 255, 0)
+            self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 1:
             self.color = (255, 0, 0)
+            self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 2:
             self.color = (0, 0, 255)
+            self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 3:
             self.color = (100, 100, 100)
+            self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 4:
             self.color = (200, 100, 100)
+            self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 5:
             self.color = (100, 200, 100)
-
+            self.image = pygame.image.load('platformtexture.jpg')
+        self.image = pygame.transform.scale(self.image, (int(self.xscale), int(self.yscale)))
+        self.rect = self.image.get_rect()
 
 def level_read(levelname):
     file = open(levelname, 'r')
