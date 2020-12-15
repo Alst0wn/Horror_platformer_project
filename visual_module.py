@@ -14,10 +14,21 @@ def frame_draw(plat, char, hight, width, screen, scale):
                                   i.y - char.y) + 0.7 * hight),
                           int(hight / scale * i.xscale),
                           int(hight / scale * i.yscale)))
-    pygame.draw.rect(screen, (255, 0, 0),
-                     (int(width / 2), int(0.7 * hight),
-                      int(hight / scale * char.xscale),
-                      int(hight / scale * char.yscale)))
+    if char.grounded and char.vx > 0:
+        char.image = pygame.image.load('groundright.png')
+        print(char.vx)
+    elif char.grounded and char.vx <= 0:
+        char.image = pygame.image.load('groundleft.png')
+        print(char.vx)
+    elif not char.grounded and char.vx > 0:
+        char.image = pygame.image.load('airright.png')
+    elif not char.grounded and char.vx <= 0:
+        char.image = pygame.image.load('airleft.png')
+    char.image = pygame.transform.scale(char.image,
+                                        (int(hight / scale * char.xscale), int(hight / scale * char.yscale)))
+    char.rect = (int(width / 2), int(0.7 * hight))
+    screen.blit(char.image, char.rect)
+
 
 def note(screen, width, height):
     pygame.draw.rect(screen, (200,200,200), (width//4, height//4,width//2, \

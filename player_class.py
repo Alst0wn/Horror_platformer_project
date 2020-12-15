@@ -26,6 +26,9 @@ class Character:
         """the y scale of the character in centimeters """
         self.texturename = 1
         """number of the current character texture"""
+        self.image = pygame.image.load('groundright.png')
+        self.image = pygame.transform.scale(self.image, (self.xscale, self.yscale))
+        self.rect = self.image.get_rect()
         self.doublejump = 1
         self.grounded = False
         self.dead = False
