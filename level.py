@@ -27,7 +27,7 @@ def gameplay(screen, clock, levelname):
 
     FPS = 30
     finished = False
-    player, level = level_read(levelname)
+    player, level, notes = level_read(levelname)
     dpress, apress = False, False
 
     while not finished:  # gameplay
@@ -61,16 +61,18 @@ def gameplay(screen, clock, levelname):
         player.deathcheck()
         if player.dead:
             finished = True
-        if False:
-            loop = False
-            note(screen, 800, 600)
-            pygame.display.update()
-            while not loop:
-                for event in pygame.event.get():
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        loop = True
-                clock.tick(FPS)
-            player.note = -1
+        for note in notes:
+            if player.collision(note, False) and not note.disabled:
+                loop = False
+                note(screen, 800, 600)
+                pygame.display.update()
+                while not loop:
+                    for event in pygame.event.get():
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            loop = True
+                    clock.tick(FPS)
+                note.disabled = True
+
         pygame.display.update()
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)

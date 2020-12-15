@@ -20,9 +20,9 @@ class Character:
         """the x component of the character's speed"""
         self.vy = 0
         """the y component of the character's speed"""
-        self.xscale = 200
+        self.xscale = 100
         """the x scale of the character in centimeters """
-        self.yscale = 400
+        self.yscale = 200
         """the y scale of the character in centimeters """
         self.texturename = 1
         """number of the current character texture"""
@@ -106,11 +106,11 @@ class Character:
                         == 2:  # collision with exit
                     self.win = True
                     self.dead = True
-                if rectobj.colliderect((self.x, self.y,
+            if rectobj.colliderect((self.x, self.y,
                                         self.xscale,
                                         self.yscale)) and obj.type \
                         == 4:
-                    pass
+                    return True
             return False
 
     def jump(self):
@@ -136,6 +136,7 @@ class Character:
 
 
 class Platform:
+    """class for interactable nonmovable oblects """
     def __init__(self, x, y, pl_width, pl_length, pl_type):
         self.x = float(x)
         self.y = float(y)
@@ -165,10 +166,30 @@ class Platform:
         self.rect = self.image.get_rect()
 
 
+class Note():
+    """class for notes"""
+    def __init__(self, x, y, width, picture, type):
+        self.x = float(x)
+        self.y = float(y)
+        self.xscale = float(width)
+        self.yscale = self.xscale
+        self.type = int(type)
+        self.xscaleshow = 100
+        self.yscaleshow = 200
+        self.disabled = False
+        self.image = pygame.image.load(
+            'notebackground'+picture+'.png')
+        self.image = pygame.transform.scale(self.image,
+                                            (self.xscaleshow,
+                                             self.yscaleshow))
+        self.rect = self.image.get_rect()
+
+
 def level_read(levelname):
     """function reads level data from file"""
     file = open(levelname, 'r')
     plat = []
+    notes = []
     lines = file.readlines()
     player = Character()
     player.x = int(lines[0].split()[0])
@@ -176,8 +197,12 @@ def level_read(levelname):
     lines.pop(0)
     for line in lines:
         a = line.split()
-        x_cord, y_cord, p_width, p_length, p_type = a
-        plat.append(
-            Platform(x_cord, y_cord, p_width, p_length, p_type))
+        x_cord, y_cord, p_width, parameter, p_type = a
+        if  not int(p_type)==4:
+            plat.append(
+                Platform(x_cord, y_cord, p_width, parameter, p_type))
+        else:
+            plat.append(
+                Note(x_cord, y_cord, p_width, parameter, p_type))
     file.close()
-    return player, plat
+    return player, plat, notes
