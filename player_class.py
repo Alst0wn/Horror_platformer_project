@@ -20,15 +20,16 @@ class Character:
         """the x component of the character's speed"""
         self.vy = 0
         """the y component of the character's speed"""
-        self.xscale = 100
+        self.xscale = 200
         """the x scale of the character in centimeters """
-        self.yscale = 200
+        self.yscale = 400
         """the y scale of the character in centimeters """
         self.texturename = 1
         """number of the current character texture"""
-        self.image = pygame.image.load('groundright.png') #creates
+        self.image = pygame.image.load('groundright.png')  # creates
         # a texture
-        self.image = pygame.transform.scale(self.image, (self.xscale, self.yscale))
+        self.image = pygame.transform.scale(self.image, (
+            self.xscale, self.yscale))
         self.rect = self.image.get_rect()
         self.doublejump = 1
         """how many doublejuns does character have left"""
@@ -77,11 +78,12 @@ class Character:
              a character """
         rectobj = pygame.Rect(obj.x, obj.y, obj.xscale, obj.yscale)
         if obj.type == 0 or obj.type == 1 or obj.type == \
-                5: #collisions with platforms
+                5:  # collisions with platforms
             if rectobj.colliderect((self.x, self.y, self.xscale,
-                                 self.yscale)):
-                if rectobj.colliderect((self.prevx, self.y, self.xscale,
-                                     self.yscale)) and change:
+                                    self.yscale)):
+                if rectobj.colliderect(
+                        (self.prevx, self.y, self.xscale,
+                         self.yscale)) and change:
                     if self.vy >= 0:
                         self.vy = 0
                         self.vx = 0
@@ -99,9 +101,9 @@ class Character:
         else:
             if change:
                 if rectobj.colliderect((self.x, self.y,
-                                           self.xscale,
+                                        self.xscale,
                                         self.yscale)) and obj.type \
-                           == 2: #collision with exit
+                        == 2:  # collision with exit
                     self.win = True
                     self.dead = True
                 if rectobj.colliderect((self.x, self.y,
@@ -128,8 +130,9 @@ class Character:
             self.vx += coef * 0.4
 
     def deathcheck(self):
+        """function checks if the character is out of bounds"""
         if (abs(self.x) > 100000 or abs(self.y) > 100000):
-            player.dead = True
+            self.dead = True
 
 
 class Platform:
@@ -157,11 +160,13 @@ class Platform:
         if int(pl_type) == 5:
             self.color = (100, 200, 100)
             self.image = pygame.image.load('platformtexture.jpg')
-        self.image = pygame.transform.scale(self.image, (int(self.xscale), int(self.yscale)))
+        self.image = pygame.transform.scale(self.image, (
+            int(self.xscale), int(self.yscale)))
         self.rect = self.image.get_rect()
 
 
 def level_read(levelname):
+    """function reads level data from file"""
     file = open(levelname, 'r')
     plat = []
     lines = file.readlines()
@@ -172,6 +177,7 @@ def level_read(levelname):
     for line in lines:
         a = line.split()
         x_cord, y_cord, p_width, p_length, p_type = a
-        plat.append(Platform(x_cord, y_cord, p_width, p_length, p_type))
+        plat.append(
+            Platform(x_cord, y_cord, p_width, p_length, p_type))
     file.close()
     return player, plat
