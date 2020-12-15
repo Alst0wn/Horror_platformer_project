@@ -26,15 +26,20 @@ class Character:
         """the y scale of the character in centimeters """
         self.texturename = 1
         """number of the current character texture"""
-        self.image = pygame.image.load('groundright.png')
+        self.image = pygame.image.load('groundright.png') #creates
+        # a texture
         self.image = pygame.transform.scale(self.image, (self.xscale, self.yscale))
         self.rect = self.image.get_rect()
         self.doublejump = 1
+        """how many doublejuns does character have left"""
         self.grounded = False
+        """boolean if character is standibg on the ground"""
         self.dead = False
+        """boolean if character is dead"""
         self.win = False
-        self.note = 0
+        """boolean if the exit is hit"""
         self.right = True
+        """boolean if the character is facing right"""
 
     def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""
@@ -53,6 +58,8 @@ class Character:
             self.vy += g
 
     def groundcheck(self, surfs):
+        """function checks if the character is standing on the
+        ground"""
         k = 0
         checkself = self
         checkself.y += 1
@@ -69,11 +76,12 @@ class Character:
             checks if you need to change the properties of
              a character """
         rectobj = pygame.Rect(obj.x, obj.y, obj.xscale, obj.yscale)
-        if obj.type == 0 or obj.type == 1 or obj.type == 5:
+        if obj.type == 0 or obj.type == 1 or obj.type == \
+                5: #collisions with platforms
             if rectobj.colliderect((self.x, self.y, self.xscale,
-                                    self.yscale)):
+                                 self.yscale)):
                 if rectobj.colliderect((self.prevx, self.y, self.xscale,
-                                        self.yscale)) and change:
+                                     self.yscale)) and change:
                     if self.vy >= 0:
                         self.vy = 0
                         self.vx = 0
@@ -91,16 +99,16 @@ class Character:
         else:
             if change:
                 if rectobj.colliderect((self.x, self.y,
-                                        self.xscale,
+                                           self.xscale,
                                         self.yscale)) and obj.type \
-                        == 2:
+                           == 2: #collision with exit
                     self.win = True
                     self.dead = True
                 if rectobj.colliderect((self.x, self.y,
                                         self.xscale,
                                         self.yscale)) and obj.type \
-                        == 4 and self.note > -1:
-                    self.note = 1
+                        == 4:
+                    pass
             return False
 
     def jump(self):
