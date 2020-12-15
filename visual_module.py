@@ -10,7 +10,7 @@ def frame_draw(plat, char, hight, width, screen, scale):
         i.image = pygame.transform.scale(i.image,
                                          (int(hight / scale * i.xscale), int(hight / scale * i.yscale)))
         i.rect = (int(hight / scale * (i.x - char.x) + width / 2),
-                                          int(hight / scale * (i.y - char.y) + 0.7 * hight))
+                  int(hight / scale * (i.y - char.y) + 0.7 * hight))
         screen.blit(i.image, i.rect)
     if char.grounded and char.right:
         char.image = pygame.image.load('groundright.png')
@@ -27,5 +27,5 @@ def frame_draw(plat, char, hight, width, screen, scale):
 
 
 def note(screen, width, height):
-    pygame.draw.rect(screen, (200,200,200), (width//4, height//4,width//2, \
-                        height//2))
+    pygame.draw.rect(screen, (200, 200, 200), (width // 4, height // 4, width // 2, \
+                                               height // 2))

@@ -23,7 +23,7 @@ def gameplay(screen, clock, levelname):
     image_list = []
     for i in range(-1, 3):
         for j in range(-4, 2):
-            create_image(2400*i, 1800*j, image_list)
+            create_image(2400 * i, 1800 * j, image_list)
 
     FPS = 30
     finished = False
@@ -61,7 +61,7 @@ def gameplay(screen, clock, levelname):
         player.deathcheck()
         if player.dead:
             finished = True
-        if player.note==1:
+        if player.note == 1:
             loop = False
             note(screen, 800, 600)
             pygame.display.update()

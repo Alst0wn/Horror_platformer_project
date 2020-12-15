@@ -71,9 +71,9 @@ class Character:
         rectobj = pygame.Rect(obj.x, obj.y, obj.xscale, obj.yscale)
         if obj.type == 0 or obj.type == 1 or obj.type == 5:
             if rectobj.colliderect((self.x, self.y, self.xscale,
-                                 self.yscale)):
+                                    self.yscale)):
                 if rectobj.colliderect((self.prevx, self.y, self.xscale,
-                                     self.yscale)) and change:
+                                        self.yscale)) and change:
                     if self.vy >= 0:
                         self.vy = 0
                         self.vx = 0
@@ -91,9 +91,9 @@ class Character:
         else:
             if change:
                 if rectobj.colliderect((self.x, self.y,
-                                           self.xscale,
+                                        self.xscale,
                                         self.yscale)) and obj.type \
-                           == 2:
+                        == 2:
                     self.win = True
                     self.dead = True
                 if rectobj.colliderect((self.x, self.y,
@@ -151,6 +151,7 @@ class Platform:
             self.image = pygame.image.load('platformtexture.jpg')
         self.image = pygame.transform.scale(self.image, (int(self.xscale), int(self.yscale)))
         self.rect = self.image.get_rect()
+
 
 def level_read(levelname):
     file = open(levelname, 'r')
