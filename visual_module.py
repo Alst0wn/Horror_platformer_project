@@ -18,3 +18,7 @@ def frame_draw(plat, char, hight, width, screen, scale):
                      (int(width / 2), int(0.7 * hight),
                       int(hight / scale * char.xscale),
                       int(hight / scale * char.yscale)))
+
+def note(screen, width, height):
+    pygame.draw.rect(screen, (200,200,200), (width//4, height//4,width//2, \
+                        height//2))
