@@ -34,6 +34,7 @@ class Character:
         self.dead = False
         self.win = False
         self.note = 0
+        self.right = True
 
     def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""

@@ -51,8 +51,10 @@ def gameplay(screen, clock, levelname):
         player.groundcheck(level)
         if dpress:
             player.speedup(+1)
+            player.right = True
         if apress:
             player.speedup(-1)
+            player.right = False
         player.move(image_list)
         for obj in level:
             player.collision(obj, True)
