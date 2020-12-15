@@ -14,10 +14,8 @@ def frame_draw(plat, char, hight, width, screen, scale):
         screen.blit(i.image, i.rect)
     if char.grounded and char.right:
         char.image = pygame.image.load('groundright.png')
-        print(char.vx)
     elif char.grounded and not char.right:
         char.image = pygame.image.load('groundleft.png')
-        print(char.vx)
     elif not char.grounded and char.vx > 0:
         char.image = pygame.image.load('airright.png')
     elif not char.grounded and char.vx <= 0:
