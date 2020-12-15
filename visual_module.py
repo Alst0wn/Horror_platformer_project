@@ -25,7 +25,20 @@ def frame_draw(plat, char, hight, width, screen, scale):
     char.rect = (int(width / 2), int(0.7 * hight))
     screen.blit(char.image, char.rect)
 
+class Note():
+    def __init__(self):
+        self.xscale = 100
+        self.yscale = 200
+        self.image = pygame.image.load('notebackground.png')
+        self.image = pygame.transform.scale(self.image, (self.xscale, self.yscale))
+        self.rect = self.image.get_rect()
+
 
 def note(screen, width, height):
-    pygame.draw.rect(screen, (200, 200, 200), (width // 4, height // 4, width // 2, \
-                                               height // 2))
+    '''pygame.draw.rect(screen, (200, 200, 200), (width // 4, height // 4, width // 2, \
+                                               height // 2))'''
+    note1 = Note()
+    note1.image = pygame.transform.scale(note1.image,
+                                        (width // 2, height // 2))
+    note1.rect = (width // 4, height // 4)
+    screen.blit(note1.image, note1.rect)
