@@ -18,9 +18,9 @@ def frame_draw(plat, char, notes, hight, width, screen, scale):
     for i in notes:
         if not i.disabled:
             i.image = pygame.transform.scale(i.image,
-                                             (int(
+                                             (3*int(
                                                  hight / scale * i.xscale),
-                                              int(
+                                              3*int(
                                                   hight / scale * i.yscale)))
             i.rect = (int(hight / scale * (i.x - char.x) + width / 2),
                       int(hight / scale * (

@@ -19,8 +19,6 @@ finished = False
 
 
 def menu(screen):
-    pygame.mixer.music.load('Jungle.mp3')
-    pygame.mixer.music.play()
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
@@ -158,17 +156,71 @@ def menu_choice(screen):
                         clock.tick(FPS)
                 if x > 300 and x < 475 and y > 525 and y < 569:
                     pygame.display.update()
+                    settings(screen)
                 pygame.display.update()
-    pygame.display.update()
-    file_key = open('level_key.txt', 'w')
-    file_key.write(str(level_key))
-    file_key.close()
+        pygame.display.update()
+        file_key = open('level_key.txt', 'w')
+        file_key.write(str(level_key))
+        file_key.close()
 
 
+def settings_draw(screen):
+    forest_surf = pygame.image.load('forest.jpg')
+    forest_rect = forest_surf.get_rect(
+        bottomright=(width, length))
+    screen.blit(forest_surf, forest_rect)
+    tlevel_1 = font.render('Music', True, BLACK, WHITE)
+    screen.blit(tlevel_1, (270, 50))
+
+
+def settings(screen):
+    finisheds = False
+    while not finisheds:
+        settings_draw(screen)
+        for s in pygame.event.get():
+            if s.type == pygame.QUIT:
+                finisheds = True
+            if s.type == pygame.MOUSEBUTTONDOWN:
+                if s.button == 1:
+                    x_s, y_s = s.pos
+                    if x_s > 250 and x_s < 390 and y_s > 50 and y_s < 94:
+                        pygame.display.update()
+                        music_choice(screen)
+                    pygame.display.update()
+        pygame.display.update()
+
+
+def music_draw(screen):
+    forest_surf = pygame.image.load('forest.jpg')
+    forest_rect = forest_surf.get_rect(
+        bottomright=(width, length))
+    screen.blit(forest_surf, forest_rect)
+    tlevel_1 = font.render('OF|ON', True, BLACK, WHITE)
+    screen.blit(tlevel_1, (270, 50))
+
+
+def music_choice(screen):
+    finishedm = False
+    while not finishedm:
+        music_draw(screen)
+        for m in pygame.event.get():
+            if m.type == pygame.QUIT:
+                finishedm = True
+            if m.type == pygame.MOUSEBUTTONDOWN:
+                if m.button == 1:
+                    x_m, y_m = m.pos
+                    if x_m > 270 and x_m < 332 and y_m > 50 and y_m < 94:
+                        pygame.mixer.music.pause()
+                    if x_m > 332 and x_m < 403 and y_m > 50 and y_m < 94:
+                        pygame.mixer.music.play()
+                    pygame.display.update()
+        pygame.display.update()
+
+pygame.mixer.music.load('Jungle.mp3')
+pygame.mixer.music.play()
 menu(screen)
 while not finished:
     clock.tick(FPS)
-
     menu(screen)
     menu_choice(screen)
 pygame.quit()
