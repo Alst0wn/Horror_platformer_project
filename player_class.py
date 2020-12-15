@@ -109,7 +109,7 @@ class Character:
             if rectobj.colliderect((self.x, self.y,
                                         self.xscale,
                                         self.yscale)) and obj.type \
-                        == 4:
+                        == 4 and change:
                     return True
             return False
 
@@ -131,7 +131,7 @@ class Character:
 
     def deathcheck(self):
         """function checks if the character is out of bounds"""
-        if (abs(self.x) > 100000 or abs(self.y) > 100000):
+        if (abs(self.x) > 10000 or abs(self.y) > 5000):
             self.dead = True
 
 

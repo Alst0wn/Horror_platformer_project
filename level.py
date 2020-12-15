@@ -3,7 +3,7 @@ from player_class import *
 from visual_module import *
 
 
-class Image():
+class Image:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -62,7 +62,7 @@ def gameplay(screen, clock, levelname):
         if player.dead:
             finished = True
         for note in notes:
-            if player.collision(note, False) and not note.disabled:
+            if player.collision(note, True) and not note.disabled:
                 loop = False
                 notedraw(screen, 800, 600, note)
                 pygame.display.update()
@@ -72,6 +72,11 @@ def gameplay(screen, clock, levelname):
                             loop = True
                     clock.tick(FPS)
                 note.disabled = True
+                dpress = pygame.key.get_pressed()[pygame.K_d]
+                if not dpress:
+                    apress = pygame.key.get_pressed()[pygame.K_a]
+                else:
+                    apress = 0
 
         pygame.display.update()
         for im in image_list:
