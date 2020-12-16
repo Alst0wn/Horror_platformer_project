@@ -13,6 +13,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 GREY = (100, 100, 100)
+SLIGHT_GREY = (200, 200, 200)
 
 # creating display
 screen = pygame.display.set_mode((width, length))
@@ -202,6 +203,12 @@ def music_draw(screen):
     screen.blit(md_3, (140, 50))
     tlevel_2 = font.render('BACK', True, BLACK, WHITE)
     screen.blit(tlevel_2, (345, 545))
+    t_1 = font.render('Developers:', True, BLACK, WHITE)
+    screen.blit(t_1, (140, 375))
+    t_2 = font.render('Bugrova Alice', True, BLACK, SLIGHT_GREY)
+    screen.blit(t_2, (140, 430))
+    t_3 = font.render('Nurysheva Alina', True, BLACK, SLIGHT_GREY)
+    screen.blit(t_3, (140, 485))
 
 
 def music_choice(screen):
