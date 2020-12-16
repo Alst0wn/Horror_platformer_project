@@ -10,6 +10,9 @@ class Character:
         """the x position of upper left corner of the character"""
         self.y = 0
         """the y position of upper left corner of the character"""
+        self.y0 = 0
+        """the initial y position of upper left corner of the 
+        character"""
         self.prevx = 0
         """the previous x position of upper left corner of the 
             character """
@@ -107,10 +110,10 @@ class Character:
                     self.win = True
                     self.dead = True
             if rectobj.colliderect((self.x, self.y,
-                                        self.xscale,
-                                        self.yscale)) and obj.type \
-                        == 4 and change:
-                    return True
+                                    self.xscale,
+                                    self.yscale)) and obj.type \
+                    == 4 and change:
+                return True
             return False
 
     def jump(self):
@@ -131,12 +134,13 @@ class Character:
 
     def deathcheck(self):
         """function checks if the character is out of bounds"""
-        if (abs(self.x) > 10000 or abs(self.y) > 10000):
+        if (abs(self.x) > 10000 or self.y - self.y0 > 4000):
             self.dead = True
 
 
 class Platform:
     """class for interactable nonmovable oblects """
+
     def __init__(self, x, y, pl_width, pl_length, pl_type):
         self.x = float(x)
         self.y = float(y)
@@ -168,6 +172,7 @@ class Platform:
 
 class Note():
     """class for notes"""
+
     def __init__(self, x, y, width, picture, type):
         self.x = float(x)
         self.y = float(y)
@@ -195,11 +200,12 @@ def level_read(levelname):
     player = Character()
     player.x = int(lines[0].split()[0])
     player.y = int(lines[0].split()[1])
+    player.y0 = player.y
     lines.pop(0)
     for line in lines:
         a = line.split()
         x_cord, y_cord, p_width, parameter, p_type = a
-        if  not int(p_type)==4:
+        if not int(p_type) == 4:
             plat.append(
                 Platform(x_cord, y_cord, p_width, parameter, p_type))
         else:
