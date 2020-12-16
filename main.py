@@ -49,7 +49,7 @@ def in_scr_choice(screen):
                     sys.exit()
                 if x_in > 300 and x_in < 475 and y_in > 525 and y_in < 569:
                     pygame.display.update()
-                    settings(screen)
+                    music_choice(screen)
                 pygame.display.update()
     pygame.display.update()
 
@@ -168,32 +168,6 @@ def menu_choice(screen):
             file_key.close()
 
 
-def settings_draw(screen):
-    forest_surf = pygame.image.load('forest.jpg')
-    forest_rect = forest_surf.get_rect(
-        bottomright=(width, length))
-    screen.blit(forest_surf, forest_rect)
-    tlevel_1 = font.render('Music', True, BLACK, WHITE)
-    screen.blit(tlevel_1, (270, 50))
-
-
-def settings(screen):
-    finisheds = False
-    while not finisheds:
-        settings_draw(screen)
-        for s in pygame.event.get():
-            if s.type == pygame.QUIT:
-                finisheds = True
-            if s.type == pygame.MOUSEBUTTONDOWN:
-                if s.button == 1:
-                    x_s, y_s = s.pos
-                    if x_s > 250 and x_s < 390 and y_s > 50 and y_s < 94:
-                        pygame.display.update()
-                        music_choice(screen)
-                    pygame.display.update()
-        pygame.display.update()
-
-
 def music_draw(screen):
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
@@ -215,7 +189,8 @@ def music_draw(screen):
     screen.blit(md_1, (270, 50))
     md_2 = font.render('ON', True, BLACK, color_on)
     screen.blit(md_2, (360, 50))
-
+    md_3 = font.render('Music', True, BLACK, WHITE)
+    screen.blit(md_3, (140, 50))
 
 def music_choice(screen):
     finishedm = False
