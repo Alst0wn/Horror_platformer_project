@@ -82,3 +82,4 @@ def gameplay(screen, clock, levelname):
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)
         frame_draw(level, player, notes, 600, 800, screen, 1600)
+    return player.win

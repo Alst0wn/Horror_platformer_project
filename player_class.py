@@ -131,7 +131,7 @@ class Character:
 
     def deathcheck(self):
         """function checks if the character is out of bounds"""
-        if (abs(self.x) > 10000 or abs(self.y) > 5000):
+        if (abs(self.x) > 10000 or abs(self.y) > 10000):
             self.dead = True
 
 
