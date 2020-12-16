@@ -66,19 +66,14 @@ def menu(screen):
     screen.blit(tlevel_3, (175, 250))
     tlevel_4 = font.render('Level 4', True, BLACK, WHITE)
     screen.blit(tlevel_4, (175, 350))
-    tlevel_5 = font.render('Level 5', True, BLACK, WHITE)
-    screen.blit(tlevel_5, (175, 450))
-    tlevel_6 = font.render('Level 6', True, BLACK, WHITE)
+    tlevel_6 = font.render('Level 5', True, BLACK, WHITE)
     screen.blit(tlevel_6, (475, 50))
-    tlevel_7 = font.render('Level 7', True, BLACK, WHITE)
+    tlevel_7 = font.render('Level 6', True, BLACK, WHITE)
     screen.blit(tlevel_7, (475, 150))
-    tlevel_8 = font.render('Level 8', True, BLACK, WHITE)
+    tlevel_8 = font.render('Level 7', True, BLACK, WHITE)
     screen.blit(tlevel_8, (475, 250))
-    tlevel_9 = font.render('Level 9', True, BLACK, WHITE)
+    tlevel_9 = font.render('Level 8', True, BLACK, WHITE)
     screen.blit(tlevel_9, (475, 350))
-    tlevel_10 = font.render('Level 10', True, BLACK, WHITE)
-    screen.blit(tlevel_10, (475, 450))
-
 
 def menu_choice(screen):
     fin = False
@@ -129,19 +124,10 @@ def menu_choice(screen):
                         else:
                             locked(screen)
                             clock.tick(FPS)
-                    if x > 175 and x < 320 and y > 450 and y < 494:
-                        pygame.display.update()
-                        if level_key >= 5:
-                            if gameplay(screen, clock, 'level_5.txt') \
-                                    and level_key == 5:
-                                level_key = 6
-                        else:
-                            locked(screen)
-                            clock.tick(FPS)
                     if x > 475 and x < 620 and y > 50 and y < 94:
                         pygame.display.update()
                         if level_key >= 6:
-                            if gameplay(screen, clock, 'level_6.txt') \
+                            if gameplay(screen, clock, 'level_5.txt') \
                                     and level_key == 6:
                                 level_key = 7
                         else:
@@ -150,7 +136,7 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 150 and y < 194:
                         pygame.display.update()
                         if level_key >= 7:
-                            if gameplay(screen, clock, 'level_7.txt') \
+                            if gameplay(screen, clock, 'level_6.txt') \
                                     and level_key == 7:
                                 level_key = 8
                         else:
@@ -159,7 +145,7 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 250 and y < 294:
                         pygame.display.update()
                         if level_key >= 8:
-                            if gameplay(screen, clock, 'level_8.txt') \
+                            if gameplay(screen, clock, 'level_7.txt') \
                                     and level_key == 8:
                                 level_key = 9
                         else:
@@ -168,16 +154,9 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 350 and y < 394:
                         pygame.display.update()
                         if level_key >= 9:
-                            if gameplay(screen, clock, 'level_9.txt') \
+                            if gameplay(screen, clock, 'level_8.txt') \
                                     and level_key == 9:
                                 level_key = 10
-                        else:
-                            locked(screen)
-                            clock.tick(FPS)
-                    if x > 475 and x < 620 and y > 450 and y < 494:
-                        pygame.display.update()
-                        if level_key >= 10:
-                            gameplay(screen, clock, 'level_10.txt')
                         else:
                             locked(screen)
                             clock.tick(FPS)
