@@ -3,27 +3,15 @@ from player_class import *
 from visual_module import *
 
 
-class Image:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.forest_surf = pygame.image.load('ok.jpg')
-        self.forest_surf = pygame.transform.scale(self.forest_surf,
-                                                  (2400, 1800))
-        self.forest_rect = self.forest_surf.get_rect(
-            bottomright=(self.x, self.y))
-
-
-def create_image(x, y, im_list):
-    image = Image(x + 800, y + 600)
-    im_list += [image]
-
-
 def gameplay(screen, clock, levelname):
+    """function with the main game loop
+
+    takes pygame screen and clock
+    also the name of the level file"""
     image_list = []
     for i in range(-1, 3):
         for j in range(-4, 2):
-            create_image(2400*i, 1800*j, image_list)
+            create_image(2400 * i, 1800 * j, image_list)
 
     FPS = 30
     finished = False
@@ -32,7 +20,7 @@ def gameplay(screen, clock, levelname):
 
     while not finished:  # gameplay
         clock.tick(FPS)
-        for event in pygame.event.get():
+        for event in pygame.event.get():  # event processing
             if event.type == pygame.QUIT:
                 finished = True
             if event.type == pygame.KEYDOWN:
@@ -48,7 +36,7 @@ def gameplay(screen, clock, levelname):
                 if event.key == pygame.K_d:
                     dpress = False
 
-        player.groundcheck(level)
+        player.groundcheck(level)  # move functions
         if dpress:
             player.speedup(+1)
             player.right = True
@@ -56,7 +44,7 @@ def gameplay(screen, clock, levelname):
             player.speedup(-1)
             player.right = False
         player.move(image_list)
-        for obj in level:
+        for obj in level:  # collisions and interactions functions
             player.collision(obj, True)
         player.deathcheck()
         if player.dead:
@@ -78,7 +66,7 @@ def gameplay(screen, clock, levelname):
                 else:
                     apress = 0
 
-        pygame.display.update()
+        pygame.display.update()  # frame drawing
         for im in image_list:
             screen.blit(im.forest_surf, im.forest_rect)
         frame_draw(level, player, notes, 600, 800, screen, 1600)
