@@ -10,7 +10,7 @@ def gameplay(screen, clock, levelname):
     also the name of the level file"""
     image_list = []
     for i in range(-1, 3):
-        for j in range(-4, 2):
+        for j in range(-4, 3):
             create_image(2400 * i, 1800 * j, image_list)
 
     FPS = 30
