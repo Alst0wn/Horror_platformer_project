@@ -55,7 +55,7 @@ def frame_draw(plat, char, notes, h, width, screen, sc):
     char.image = pygame.transform.scale(char.image,
                                         (int(h / sc * char.xscale),
                                          int(h / sc * char.yscale)))
-    char.rect = (int(width / 2), int(0.7 * hight))
+    char.rect = (int(width / 2), int(0.7 * h))
     screen.blit(char.image, char.rect)
 
 

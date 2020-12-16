@@ -47,9 +47,9 @@ def gameplay(screen, clock, levelname):
         for obj in level:  # collisions and interactions functions
             player.collision(obj, True)
         player.deathcheck()
-        if player.dead:
+        if player.dead:  # game loop break
             finished = True
-        for note in notes:
+        for note in notes:  # showing note
             if player.collision(note, True) and not note.disabled:
                 loop = False
                 notedraw(screen, 800, 600, note)
