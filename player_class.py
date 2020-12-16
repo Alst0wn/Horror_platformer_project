@@ -5,45 +5,45 @@ class Character:
 
     def __init__(self):
         self.name = 'Julia'
-        """the name of the character"""
+        # the name of the character
         self.x = 0
-        """the x position of upper left corner of the character"""
+        # the x position of upper left corner of the character
         self.y = 0
-        """the y position of upper left corner of the character"""
+        # the y position of upper left corner of the character
         self.y0 = 0
-        """the initial y position of upper left corner of the 
-        character"""
+        # the initial y position of upper left corner of the
+        # character
         self.prevx = 0
-        """the previous x position of upper left corner of the 
-            character """
+        # the previous x position of upper left corner of the
+        # character
         self.prevy = 0
-        """the previous y position of upper left corner of the 
-        character """
+        # the previous y position of upper left corner of the
+        # character
         self.vx = 0
-        """the x component of the character's speed"""
+        # the x component of the character's speed
         self.vy = 0
-        """the y component of the character's speed"""
+        # the y component of the character's speed
         self.xscale = 200
-        """the x scale of the character in centimeters """
+        # the x scale of the character in centimeters
         self.yscale = 400
-        """the y scale of the character in centimeters """
+        # the y scale of the character in centimeters
         self.texturename = 1
-        """number of the current character texture"""
+        # number of the current character texture
         self.image = pygame.image.load('groundright.png')  # creates
         # a texture
         self.image = pygame.transform.scale(self.image, (
             self.xscale, self.yscale))
         self.rect = self.image.get_rect()
         self.doublejump = 1
-        """how many doublejuns does character have left"""
+        # how many doublejuns does character have left
         self.grounded = False
-        """boolean if character is standing on the ground"""
+        # boolean if character is standing on the ground
         self.dead = False
-        """boolean if character is dead"""
+        # boolean if character is dead
         self.win = False
-        """boolean if the exit is hit"""
+        # boolean if the exit is hit
         self.right = True
-        """boolean if the character is facing right"""
+        # boolean if the character is facing right
 
     def move(self, list_obj, g=1):
         """function moves the character in gravitational field g"""
@@ -112,7 +112,7 @@ class Character:
             if rectobj.colliderect((self.x, self.y,
                                     self.xscale,
                                     self.yscale)) and obj.type \
-                    == 4 and change:
+                    == 4 and change:  # collisions with notes
                 return True
             return False
 
@@ -134,7 +134,7 @@ class Character:
 
     def deathcheck(self):
         """function checks if the character is out of bounds"""
-        if (abs(self.x) > 10000 or self.y - self.y0 > 4000):
+        if abs(self.x) > 10000 or self.y - self.y0 > 4000:
             self.dead = True
 
 
@@ -143,34 +143,34 @@ class Platform:
 
     def __init__(self, x, y, pl_width, pl_length, pl_type):
         self.x = float(x)
+        # the x position of upper left corner of the object
         self.y = float(y)
+        # the y position of upper left corner of the object
         self.xscale = float(pl_width)
+        # the x scale of the object in centimeters
         self.yscale = float(pl_length)
+        # the y scale of the object in centimeters
         self.type = int(pl_type)
+        # the number of type of the object
         if int(pl_type) == 0:
-            self.color = (0, 255, 0)
             self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 1:
-            self.color = (255, 0, 0)
             self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 2:
-            self.color = (0, 0, 255)
             self.image = pygame.image.load('exit.png')
         if int(pl_type) == 3:
-            self.color = (100, 100, 100)
             self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 4:
-            self.color = (200, 100, 100)
             self.image = pygame.image.load('platformtexture.jpg')
         if int(pl_type) == 5:
-            self.color = (100, 200, 100)
             self.image = pygame.image.load('platformtexture.jpg')
         self.image = pygame.transform.scale(self.image, (
             int(self.xscale), int(self.yscale)))
         self.rect = self.image.get_rect()
+        # attributes for drawing
 
 
-class Note():
+class Note:
     """class for notes"""
 
     def __init__(self, x, y, width, picture, type):
