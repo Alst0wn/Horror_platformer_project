@@ -5,7 +5,7 @@ from level import *
 pygame.init()
 font = pygame.font.Font(None, 60)
 font1 = pygame.font.Font(None, 30)
-font2 = pygame.font.Font(None, 200)
+font2 = pygame.font.Font(None, 180)
 FPS = 30
 width = 800
 length = 600
@@ -31,11 +31,11 @@ def initial_display_draw(screen):
     dark_rect = (200, 30)
     screen.blit(dark_forest, dark_rect)
     tlevel_1 = font2.render('PLAY', True, BLACK, WHITE)
-    screen.blit(tlevel_1, (225, 350))
+    screen.blit(tlevel_1, (245, 300))
     tlevel_2 = font.render('QUIT', True, BLACK, WHITE)
-    screen.blit(tlevel_2, (700, 0))
+    screen.blit(tlevel_2, (345, 545))
     tsettings = font.render('Settings', True, BLACK, WHITE)
-    screen.blit(tsettings, (300, 525))
+    screen.blit(tsettings, (310, 465))
 
 
 def in_scr_choice(screen):
@@ -46,13 +46,13 @@ def in_scr_choice(screen):
         if ins.type == pygame.MOUSEBUTTONDOWN:
             if ins.button == 1:
                 x_in, y_in = ins.pos
-                if x_in > 225 and x_in < 580 and y_in > 350 and y_in < 490:
+                if x_in > 245 and x_in < 570 and y_in > 300 and y_in < 425:
                     pygame.display.update()
                     menu_choice(screen)
-                if x_in > 700 and x_in < 800 and y_in > 0 and y_in < 45:
+                if x_in > 345 and x_in < 445 and y_in > 545 and y_in < 590:
                     pygame.display.update()
                     sys.exit()
-                if x_in > 300 and x_in < 475 and y_in > 525 and y_in < 569:
+                if x_in > 310 and x_in < 485 and y_in > 465 and y_in < 509:
                     pygame.display.update()
                     music_choice(screen)
                 pygame.display.update()
@@ -80,6 +80,8 @@ def menu(screen):
     screen.blit(tlevel_8, (475, 250))
     tlevel_9 = font.render('Level 8', True, BLACK, WHITE)
     screen.blit(tlevel_9, (475, 350))
+    tlevel_2 = font.render('BACK', True, BLACK, WHITE)
+    screen.blit(tlevel_2, (345, 545))
 
 
 def menu_choice(screen):
@@ -91,10 +93,13 @@ def menu_choice(screen):
         file_key.close()
         for i in pygame.event.get():
             if i.type == pygame.QUIT:
-                fin = True
+                sys.exit()
             if i.type == pygame.MOUSEBUTTONDOWN:
                 if i.button == 1:
                     x, y = i.pos
+                    if x > 345 and x < 445 and y > 545 and y < 590:
+                        pygame.display.update()
+                        fin = True
                     if x > 175 and x < 320 and y > 50 and y < 94:
                         pygame.display.update()
                         if level_key >= 1:
@@ -196,6 +201,9 @@ def music_draw(screen):
     screen.blit(md_2, (360, 50))
     md_3 = font.render('Music', True, BLACK, WHITE)
     screen.blit(md_3, (140, 50))
+    tlevel_2 = font.render('BACK', True, BLACK, WHITE)
+    screen.blit(tlevel_2, (345, 545))
+
 
 def music_choice(screen):
     finishedm = False
@@ -203,10 +211,13 @@ def music_choice(screen):
         music_draw(screen)
         for m in pygame.event.get():
             if m.type == pygame.QUIT:
-                finishedm = True
+                sys.exit()
             if m.type == pygame.MOUSEBUTTONDOWN:
                 if m.button == 1:
                     x_m, y_m = m.pos
+                    if x_m > 345 and x_m < 445 and y_m > 545 and y_m < 590:
+                        pygame.display.update()
+                        finishedm = True
                     if x_m > 270 and x_m < 353 and y_m > 50 and y_m < 94:
                         file = open('button_color.txt', 'w')
                         file.write('1 0')
