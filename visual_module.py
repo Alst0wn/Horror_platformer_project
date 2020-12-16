@@ -4,7 +4,10 @@ import pygame.draw
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 
+
 class Image:
+    """class of images that make up the background"""
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -16,30 +19,30 @@ class Image:
 
 
 def create_image(x, y, im_list):
+    """function creates a new background image"""
     image = Image(x + 800, y + 600)
     im_list += [image]
 
 
-def frame_draw(plat, char, notes, hight, width, screen, scale):
+def frame_draw(plat, char, notes, h, width, screen, sc):
+    """functions draws a frame of the game with platforms in plat,
+    character char, notes in notes with frame height h and
+    width width on screen screen scaled with sc"""
     for i in plat:
         i.image = pygame.transform.scale(i.image,
-                                         (int(
-                                             hight / scale * i.xscale),
-                                          int(
-                                              hight / scale * i.yscale)))
-        i.rect = (int(hight / scale * (i.x - char.x) + width / 2),
-                  int(hight / scale * (i.y - char.y) + 0.7 * hight))
+                                         (int(h / sc * i.xscale),
+                                          int(h / sc * i.yscale)))
+        i.rect = (int(h / sc * (i.x - char.x) + width / 2),
+                  int(h / sc * (i.y - char.y) + 0.7 * h))
         screen.blit(i.image, i.rect)
     for i in notes:
         if not i.disabled:
             i.image = pygame.transform.scale(i.image,
-                                             (int(
-                                                 hight / scale * i.xscale),
-                                              int(
-                                                  hight / scale * i.yscale)))
-            i.rect = (int(hight / scale * (i.x - char.x) + width / 2),
-                      int(hight / scale * (
-                                  i.y - char.y) + 0.7 * hight))
+                                             (int(h / sc * i.xscale),
+                                              int(h / sc * i.yscale)))
+            i.rect = (int(h / sc * (i.x - char.x) + width / 2),
+                      int(h / sc * (
+                              i.y - char.y) + 0.7 * h))
             screen.blit(i.image, i.rect)
     if char.grounded and char.right:
         char.image = pygame.image.load('groundright.png')
@@ -50,18 +53,17 @@ def frame_draw(plat, char, notes, hight, width, screen, scale):
     elif not char.grounded and char.vx <= 0:
         char.image = pygame.image.load('airleft.png')
     char.image = pygame.transform.scale(char.image,
-                                        (int(
-                                            hight / scale * char.xscale),
-                                         int(
-                                             hight / scale * char.yscale)))
+                                        (int(h / sc * char.xscale),
+                                         int(h / sc * char.yscale)))
     char.rect = (int(width / 2), int(0.7 * hight))
     screen.blit(char.image, char.rect)
 
 
 def notedraw(screen, width, height, note):
-    note1=note
+    """function draws a note on top of the frame"""
+    note1 = note
     note1.image = pygame.image.load(
-        'notebackground'+note1.picture+'.png')
+        'notebackground' + note1.picture + '.png')
     note1.image = pygame.transform.scale(note1.image,
                                          (width // 2, height // 2))
     note1.rect = (width // 4, height // 4)
