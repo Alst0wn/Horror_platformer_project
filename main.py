@@ -128,37 +128,37 @@ def menu_choice(screen):
                             clock.tick(FPS)
                     if x > 475 and x < 620 and y > 50 and y < 94:
                         pygame.display.update()
-                        if level_key >= 6:
+                        if level_key >= 5:
                             if gameplay(screen, clock, 'level_5.txt') \
-                                    and level_key == 6:
-                                level_key = 7
+                                    and level_key == 5:
+                                level_key = 6
                         else:
                             locked(screen)
                             clock.tick(FPS)
                     if x > 475 and x < 620 and y > 150 and y < 194:
                         pygame.display.update()
-                        if level_key >= 7:
+                        if level_key >= 6:
                             if gameplay(screen, clock, 'level_6.txt') \
-                                    and level_key == 7:
-                                level_key = 8
+                                    and level_key == 6:
+                                level_key = 7
                         else:
                             locked(screen)
                             clock.tick(FPS)
                     if x > 475 and x < 620 and y > 250 and y < 294:
                         pygame.display.update()
-                        if level_key >= 8:
+                        if level_key >= 7:
                             if gameplay(screen, clock, 'level_7.txt') \
-                                    and level_key == 8:
-                                level_key = 9
+                                    and level_key == 7:
+                                level_key = 8
                         else:
                             locked(screen)
                             clock.tick(FPS)
                     if x > 475 and x < 620 and y > 350 and y < 394:
                         pygame.display.update()
-                        if level_key >= 9:
+                        if level_key >= 8:
                             if gameplay(screen, clock, 'level_8.txt') \
-                                    and level_key == 9:
-                                level_key = 10
+                                    and level_key == 8:
+                                level_key = 9
                         else:
                             locked(screen)
                             clock.tick(FPS)
