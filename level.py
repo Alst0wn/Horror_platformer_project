@@ -80,3 +80,7 @@ def gameplay(screen, clock, levelname):
             a -= 1
             pygame.display.update()
     return player.win
+
+
+if __name__ == "__main__":
+    print("This module is not for direct call!")

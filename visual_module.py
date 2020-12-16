@@ -68,3 +68,7 @@ def notedraw(screen, width, height, note):
                                          (width // 2, height // 2))
     note1.rect = (width // 4, height // 4)
     screen.blit(note1.image, note1.rect)
+
+
+if __name__ == "__main__":
+    print("This module is not for direct call!")

@@ -213,3 +213,7 @@ def level_read(levelname):
                 Note(x_cord, y_cord, p_width, parameter, p_type))
     file.close()
     return player, plat, notes
+
+
+if __name__ == "__main__":
+    print("This module is not for direct call!")
