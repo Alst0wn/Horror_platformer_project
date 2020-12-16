@@ -5,6 +5,7 @@ from level import *
 pygame.init()
 font = pygame.font.Font(None, 60)
 font1 = pygame.font.Font(None, 30)
+font2 = pygame.font.Font(None, 200)
 FPS = 30
 width = 800
 length = 600
@@ -16,6 +17,39 @@ GREEN = (0, 255, 0)
 screen = pygame.display.set_mode((width, length))
 clock = pygame.time.Clock()
 finished = False
+
+def initial_display_draw(screen):
+    forest_surf = pygame.image.load('forest.jpg')
+    forest_rect = forest_surf.get_rect(
+        bottomright=(width, length))
+    screen.blit(forest_surf, forest_rect)
+    tlevel_1 = font2.render('PLAY', True, BLACK, WHITE)
+    screen.blit(tlevel_1, (225, 50))
+    tlevel_2 = font2.render('QUIT', True, BLACK, WHITE)
+    screen.blit(tlevel_2, (230, 250))
+    tsettings = font.render('Settings', True, BLACK, WHITE)
+    screen.blit(tsettings, (300, 525))
+
+
+def in_scr_choice(screen):
+    initial_display_draw(screen)
+    for ins in pygame.event.get():
+        if ins.type == pygame.QUIT:
+            sys.exit()
+        if ins.type == pygame.MOUSEBUTTONDOWN:
+            if ins.button == 1:
+                x_in, y_in = ins.pos
+                if x_in > 225 and x_in < 580 and y_in > 50 and y_in < 190:
+                    pygame.display.update()
+                    menu_choice(screen)
+                if x_in > 230 and x_in < 570 and y_in > 250 and y_in < 390:
+                    pygame.display.update()
+                    sys.exit()
+                if x_in > 300 and x_in < 475 and y_in > 525 and y_in < 569:
+                    pygame.display.update()
+                    settings(screen)
+                pygame.display.update()
+    pygame.display.update()
 
 
 def menu(screen):
@@ -43,125 +77,113 @@ def menu(screen):
     screen.blit(tlevel_9, (475, 350))
     tlevel_10 = font.render('Level 10', True, BLACK, WHITE)
     screen.blit(tlevel_10, (475, 450))
-    tsettings = font.render('Settings', True, BLACK, WHITE)
-    screen.blit(tsettings, (300, 525))
-
-
-def locked(screen):
-    tlocked = font.render('Locked!', True, WHITE, BLACK)
-    a = 1000
-    while a > 0:
-        screen.blit(tlocked, (330, 300))
-        a -= 1
-        pygame.display.update()
 
 
 def menu_choice(screen):
-    file_key = open('level_key.txt', 'r')
-    level_key = int(file_key.read())
-    file_key.close()
-    for i in pygame.event.get():
-        if i.type == pygame.QUIT:
-            sys.exit()
-        if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                x, y = i.pos
-                if x > 175 and x < 320 and y > 50 and y < 94:
-                    pygame.display.update()
-                    if level_key >= 1:
-                        if gameplay(screen, clock, 'level_1.txt') \
-                                and level_key == 1:
-                            level_key = 2
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 175 and x < 320 and y > 150 and y < 194:
-                    pygame.display.update()
-                    if level_key >= 2:
-                        if gameplay(screen, clock, 'level_2.txt') \
-                                and level_key == 2:
-                            level_key = 3
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 175 and x < 320 and y > 250 and y < 294:
-                    pygame.display.update()
-                    if level_key >= 3:
-                        if gameplay(screen, clock, 'level_3.txt') \
-                                and level_key == 3:
-                            level_key = 4
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 175 and x < 320 and y > 350 and y < 394:
-                    pygame.display.update()
-                    if level_key >= 4:
-                        if gameplay(screen, clock, 'level_4.txt') \
-                                and level_key == 4:
-                            level_key = 5
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 175 and x < 320 and y > 450 and y < 494:
-                    pygame.display.update()
-                    if level_key >= 5:
-                        if gameplay(screen, clock, 'level_5.txt') \
-                                and level_key == 5:
-                            level_key = 6
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 475 and x < 620 and y > 50 and y < 94:
-                    pygame.display.update()
-                    if level_key >= 6:
-                        if gameplay(screen, clock, 'level_6.txt') \
-                                and level_key == 6:
-                            level_key = 7
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 475 and x < 620 and y > 150 and y < 194:
-                    pygame.display.update()
-                    if level_key >= 7:
-                        if gameplay(screen, clock, 'level_7.txt') \
-                                and level_key == 7:
-                            level_key = 8
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 475 and x < 620 and y > 250 and y < 294:
-                    pygame.display.update()
-                    if level_key >= 8:
-                        if gameplay(screen, clock, 'level_8.txt') \
-                                and level_key == 8:
-                            level_key = 9
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 475 and x < 620 and y > 350 and y < 394:
-                    pygame.display.update()
-                    if level_key >= 9:
-                        if gameplay(screen, clock, 'level_9.txt') \
-                                and level_key == 9:
-                            level_key = 10
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 475 and x < 620 and y > 450 and y < 494:
-                    pygame.display.update()
-                    if level_key >= 10:
-                        gameplay(screen, clock, 'level_10.txt')
-                    else:
-                        locked(screen)
-                        clock.tick(FPS)
-                if x > 300 and x < 475 and y > 525 and y < 569:
-                    pygame.display.update()
-                    settings(screen)
-                pygame.display.update()
-        pygame.display.update()
-        file_key = open('level_key.txt', 'w')
-        file_key.write(str(level_key))
+    fin = False
+    while not fin:
+        menu(screen)
+        file_key = open('level_key.txt', 'r')
+        level_key = int(file_key.read())
         file_key.close()
+        for i in pygame.event.get():
+            if i.type == pygame.QUIT:
+                fin = True
+            if i.type == pygame.MOUSEBUTTONDOWN:
+                if i.button == 1:
+                    x, y = i.pos
+                    if x > 175 and x < 320 and y > 50 and y < 94:
+                        pygame.display.update()
+                        if level_key >= 1:
+                            if gameplay(screen, clock, 'level_1.txt') \
+                                    and level_key == 1:
+                                level_key = 2
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 175 and x < 320 and y > 150 and y < 194:
+                        pygame.display.update()
+                        if level_key >= 2:
+                            if gameplay(screen, clock, 'level_2.txt') \
+                                    and level_key == 2:
+                                level_key = 3
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 175 and x < 320 and y > 250 and y < 294:
+                        pygame.display.update()
+                        if level_key >= 3:
+                            if gameplay(screen, clock, 'level_3.txt') \
+                                    and level_key == 3:
+                                level_key = 4
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 175 and x < 320 and y > 350 and y < 394:
+                        pygame.display.update()
+                        if level_key >= 4:
+                            if gameplay(screen, clock, 'level_4.txt') \
+                                    and level_key == 4:
+                                level_key = 5
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 175 and x < 320 and y > 450 and y < 494:
+                        pygame.display.update()
+                        if level_key >= 5:
+                            if gameplay(screen, clock, 'level_5.txt') \
+                                    and level_key == 5:
+                                level_key = 6
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 475 and x < 620 and y > 50 and y < 94:
+                        pygame.display.update()
+                        if level_key >= 6:
+                            if gameplay(screen, clock, 'level_6.txt') \
+                                    and level_key == 6:
+                                level_key = 7
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 475 and x < 620 and y > 150 and y < 194:
+                        pygame.display.update()
+                        if level_key >= 7:
+                            if gameplay(screen, clock, 'level_7.txt') \
+                                    and level_key == 7:
+                                level_key = 8
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 475 and x < 620 and y > 250 and y < 294:
+                        pygame.display.update()
+                        if level_key >= 8:
+                            if gameplay(screen, clock, 'level_8.txt') \
+                                    and level_key == 8:
+                                level_key = 9
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 475 and x < 620 and y > 350 and y < 394:
+                        pygame.display.update()
+                        if level_key >= 9:
+                            if gameplay(screen, clock, 'level_9.txt') \
+                                    and level_key == 9:
+                                level_key = 10
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+                    if x > 475 and x < 620 and y > 450 and y < 494:
+                        pygame.display.update()
+                        if level_key >= 10:
+                            gameplay(screen, clock, 'level_10.txt')
+                        else:
+                            locked(screen)
+                            clock.tick(FPS)
+            pygame.display.update()
+            file_key = open('level_key.txt', 'w')
+            file_key.write(str(level_key))
+            file_key.close()
 
 
 def settings_draw(screen):
@@ -216,11 +238,20 @@ def music_choice(screen):
                     pygame.display.update()
         pygame.display.update()
 
+
+def locked(screen):
+    tlocked = font.render('Locked!', True, WHITE, BLACK)
+    a = 1000
+    while a > 0:
+        screen.blit(tlocked, (330, 300))
+        a -= 1
+        pygame.display.update()
+
+
 pygame.mixer.music.load('Jungle.mp3')
 pygame.mixer.music.play()
-menu(screen)
+initial_display_draw(screen)
 while not finished:
     clock.tick(FPS)
-    menu(screen)
-    menu_choice(screen)
+    in_scr_choice(screen)
 pygame.quit()
