@@ -19,6 +19,7 @@ screen = pygame.display.set_mode((width, length))
 clock = pygame.time.Clock()
 finished = False
 
+
 def initial_display_draw(screen):
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
@@ -74,6 +75,7 @@ def menu(screen):
     screen.blit(tlevel_8, (475, 250))
     tlevel_9 = font.render('Level 8', True, BLACK, WHITE)
     screen.blit(tlevel_9, (475, 350))
+
 
 def menu_choice(screen):
     fin = False
@@ -239,7 +241,6 @@ def music_choice(screen):
         pygame.display.update()
 
 
-
 def locked(screen):
     tlocked = font.render('Locked!', True, WHITE, BLACK)
     a = 1000
@@ -247,7 +248,6 @@ def locked(screen):
         screen.blit(tlocked, (330, 300))
         a -= 1
         pygame.display.update()
-
 
 
 file = open('button_color.txt', 'r')
