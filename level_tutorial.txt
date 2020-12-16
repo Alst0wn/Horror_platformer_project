@@ -1,0 +1,8 @@
+level tutorial:
+lines are objects
+first line is character level_read reads two arguments - x and y coordinates of her right upper corner
+then it's notes and platforms
+first two arguments - x and y coordinates of its right upper corner
+third argument is scale - xscale for platforms and both scales for notes (they are squared)
+forth argument is yscale for platforms and note number n for notes (note will show picture "notebackgroundn.png")
+fifth argument is type - 0 for platform, 4 for notes
