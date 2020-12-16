@@ -71,12 +71,12 @@ def gameplay(screen, clock, levelname):
             screen.blit(im.forest_surf, im.forest_rect)
         frame_draw(level, player, notes, 600, 800, screen, 1600)
     if player.win and player.dead and levelname == 'level_8.txt':
-       the_end = pygame.image.load('TheEnd.png')
-       the_end = pygame.transform.scale(the_end, (800, 600))
-       end_rect = ((0, 0))
-       a = 200
-       while a > 0:
-           screen.blit(the_end, end_rect)
-           a -= 1
-           pygame.display.update()
+        the_end = pygame.image.load('TheEnd.png')
+        the_end = pygame.transform.scale(the_end, (800, 600))
+        end_rect = ((0, 0))
+        a = 200
+        while a > 0:
+            screen.blit(the_end, end_rect)
+            a -= 1
+            pygame.display.update()
     return player.win

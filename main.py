@@ -22,6 +22,7 @@ finished = False
 
 
 def initial_display_draw(screen):
+    """function draws initial menu on screen"""
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
@@ -39,6 +40,7 @@ def initial_display_draw(screen):
 
 
 def in_scr_choice(screen):
+    """function provides opportunity to select what to do"""
     initial_display_draw(screen)
     for ins in pygame.event.get():
         if ins.type == pygame.QUIT:
@@ -60,6 +62,7 @@ def in_scr_choice(screen):
 
 
 def menu(screen):
+    """function draws menu, where we can choose levels"""
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
@@ -85,6 +88,7 @@ def menu(screen):
 
 
 def menu_choice(screen):
+    """function provides opportunity to select level"""
     fin = False
     while not fin:
         menu(screen)
@@ -179,6 +183,8 @@ def menu_choice(screen):
 
 
 def music_draw(screen):
+    """function draws settings of the game, where we can turn on/off
+    the music"""
     forest_surf = pygame.image.load('forest.jpg')
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
@@ -212,6 +218,8 @@ def music_draw(screen):
 
 
 def music_choice(screen):
+    """function creates new setting display, where we can select
+    music parameter"""
     finishedm = False
     while not finishedm:
         music_draw(screen)
@@ -239,6 +247,7 @@ def music_choice(screen):
 
 
 def locked(screen):
+    """function displays if we don't have an access to a level"""
     tlocked = font.render('Locked!', True, WHITE, BLACK)
     a = 1000
     while a > 0:
@@ -247,6 +256,7 @@ def locked(screen):
         pygame.display.update()
 
 
+# started a game menu
 file = open('button_color.txt', 'r')
 button = file.read()
 off, on = button.split()
