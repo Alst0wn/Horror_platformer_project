@@ -12,11 +12,13 @@ length = 600
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
+GREY = (100, 100, 100)
 
 # creating display
 screen = pygame.display.set_mode((width, length))
 clock = pygame.time.Clock()
 finished = False
+
 
 def initial_display_draw(screen):
     forest_surf = pygame.image.load('forest.jpg')
@@ -65,18 +67,14 @@ def menu(screen):
     screen.blit(tlevel_3, (175, 250))
     tlevel_4 = font.render('Level 4', True, BLACK, WHITE)
     screen.blit(tlevel_4, (175, 350))
-    tlevel_5 = font.render('Level 5', True, BLACK, WHITE)
-    screen.blit(tlevel_5, (175, 450))
-    tlevel_6 = font.render('Level 6', True, BLACK, WHITE)
+    tlevel_6 = font.render('Level 5', True, BLACK, WHITE)
     screen.blit(tlevel_6, (475, 50))
-    tlevel_7 = font.render('Level 7', True, BLACK, WHITE)
+    tlevel_7 = font.render('Level 6', True, BLACK, WHITE)
     screen.blit(tlevel_7, (475, 150))
-    tlevel_8 = font.render('Level 8', True, BLACK, WHITE)
+    tlevel_8 = font.render('Level 7', True, BLACK, WHITE)
     screen.blit(tlevel_8, (475, 250))
-    tlevel_9 = font.render('Level 9', True, BLACK, WHITE)
+    tlevel_9 = font.render('Level 8', True, BLACK, WHITE)
     screen.blit(tlevel_9, (475, 350))
-    tlevel_10 = font.render('Level 10', True, BLACK, WHITE)
-    screen.blit(tlevel_10, (475, 450))
 
 
 def menu_choice(screen):
@@ -128,19 +126,10 @@ def menu_choice(screen):
                         else:
                             locked(screen)
                             clock.tick(FPS)
-                    if x > 175 and x < 320 and y > 450 and y < 494:
-                        pygame.display.update()
-                        if level_key >= 5:
-                            if gameplay(screen, clock, 'level_5.txt') \
-                                    and level_key == 5:
-                                level_key = 6
-                        else:
-                            locked(screen)
-                            clock.tick(FPS)
                     if x > 475 and x < 620 and y > 50 and y < 94:
                         pygame.display.update()
                         if level_key >= 6:
-                            if gameplay(screen, clock, 'level_6.txt') \
+                            if gameplay(screen, clock, 'level_5.txt') \
                                     and level_key == 6:
                                 level_key = 7
                         else:
@@ -149,7 +138,7 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 150 and y < 194:
                         pygame.display.update()
                         if level_key >= 7:
-                            if gameplay(screen, clock, 'level_7.txt') \
+                            if gameplay(screen, clock, 'level_6.txt') \
                                     and level_key == 7:
                                 level_key = 8
                         else:
@@ -158,7 +147,7 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 250 and y < 294:
                         pygame.display.update()
                         if level_key >= 8:
-                            if gameplay(screen, clock, 'level_8.txt') \
+                            if gameplay(screen, clock, 'level_7.txt') \
                                     and level_key == 8:
                                 level_key = 9
                         else:
@@ -167,16 +156,9 @@ def menu_choice(screen):
                     if x > 475 and x < 620 and y > 350 and y < 394:
                         pygame.display.update()
                         if level_key >= 9:
-                            if gameplay(screen, clock, 'level_9.txt') \
+                            if gameplay(screen, clock, 'level_8.txt') \
                                     and level_key == 9:
                                 level_key = 10
-                        else:
-                            locked(screen)
-                            clock.tick(FPS)
-                    if x > 475 and x < 620 and y > 450 and y < 494:
-                        pygame.display.update()
-                        if level_key >= 10:
-                            gameplay(screen, clock, 'level_10.txt')
                         else:
                             locked(screen)
                             clock.tick(FPS)
@@ -217,8 +199,22 @@ def music_draw(screen):
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
     screen.blit(forest_surf, forest_rect)
-    tlevel_1 = font.render('OF|ON', True, BLACK, WHITE)
-    screen.blit(tlevel_1, (270, 50))
+    file = open('button_color.txt', 'r')
+    button_0 = file.read()
+    color_off, color_on = button_0.split()
+    if int(color_on) == 1:
+        color_on = WHITE
+    else:
+        color_on = GREY
+    if int(color_off) == 1:
+        color_off = WHITE
+    else:
+        color_off = GREY
+    file.close()
+    md_1 = font.render('OFF', True, BLACK, color_off)
+    screen.blit(md_1, (270, 50))
+    md_2 = font.render('ON', True, BLACK, color_on)
+    screen.blit(md_2, (360, 50))
 
 
 def music_choice(screen):
@@ -231,9 +227,15 @@ def music_choice(screen):
             if m.type == pygame.MOUSEBUTTONDOWN:
                 if m.button == 1:
                     x_m, y_m = m.pos
-                    if x_m > 270 and x_m < 332 and y_m > 50 and y_m < 94:
+                    if x_m > 270 and x_m < 353 and y_m > 50 and y_m < 94:
+                        file = open('button_color.txt', 'w')
+                        file.write('1 0')
+                        file.close()
                         pygame.mixer.music.pause()
-                    if x_m > 332 and x_m < 403 and y_m > 50 and y_m < 94:
+                    if x_m > 360 and x_m < 424 and y_m > 50 and y_m < 94:
+                        file = open('button_color.txt', 'w')
+                        file.write('0 1')
+                        file.close()
                         pygame.mixer.music.play()
                     pygame.display.update()
         pygame.display.update()
@@ -248,8 +250,14 @@ def locked(screen):
         pygame.display.update()
 
 
+file = open('button_color.txt', 'r')
+button = file.read()
+off, on = button.split()
 pygame.mixer.music.load('Jungle.mp3')
-pygame.mixer.music.play()
+if int(on):
+    pygame.mixer.music.play()
+else:
+    pygame.mixer.music.pause()
 initial_display_draw(screen)
 while not finished:
     clock.tick(FPS)
