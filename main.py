@@ -25,10 +25,15 @@ def initial_display_draw(screen):
     forest_rect = forest_surf.get_rect(
         bottomright=(width, length))
     screen.blit(forest_surf, forest_rect)
+    dark_forest = pygame.image.load('name.png')
+    dark_rect = dark_forest.get_rect()
+    pygame.transform.scale(dark_forest, (400, 150))
+    dark_rect = (200, 30)
+    screen.blit(dark_forest, dark_rect)
     tlevel_1 = font2.render('PLAY', True, BLACK, WHITE)
-    screen.blit(tlevel_1, (225, 50))
-    tlevel_2 = font2.render('QUIT', True, BLACK, WHITE)
-    screen.blit(tlevel_2, (230, 250))
+    screen.blit(tlevel_1, (225, 350))
+    tlevel_2 = font.render('QUIT', True, BLACK, WHITE)
+    screen.blit(tlevel_2, (700, 0))
     tsettings = font.render('Settings', True, BLACK, WHITE)
     screen.blit(tsettings, (300, 525))
 
@@ -41,10 +46,10 @@ def in_scr_choice(screen):
         if ins.type == pygame.MOUSEBUTTONDOWN:
             if ins.button == 1:
                 x_in, y_in = ins.pos
-                if x_in > 225 and x_in < 580 and y_in > 50 and y_in < 190:
+                if x_in > 225 and x_in < 580 and y_in > 350 and y_in < 490:
                     pygame.display.update()
                     menu_choice(screen)
-                if x_in > 230 and x_in < 570 and y_in > 250 and y_in < 390:
+                if x_in > 700 and x_in < 800 and y_in > 0 and y_in < 45:
                     pygame.display.update()
                     sys.exit()
                 if x_in > 300 and x_in < 475 and y_in > 525 and y_in < 569:
