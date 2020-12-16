@@ -4,6 +4,21 @@ import pygame.draw
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 
+class Image:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.forest_surf = pygame.image.load('ok.jpg')
+        self.forest_surf = pygame.transform.scale(self.forest_surf,
+                                                  (2400, 1800))
+        self.forest_rect = self.forest_surf.get_rect(
+            bottomright=(self.x, self.y))
+
+
+def create_image(x, y, im_list):
+    image = Image(x + 800, y + 600)
+    im_list += [image]
+
 
 def frame_draw(plat, char, notes, hight, width, screen, scale):
     for i in plat:
